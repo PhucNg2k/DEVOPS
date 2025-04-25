@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Subnet module
+Parameters:
+  VpcId:
+    Type: String
+  CidrBlock:
+    Type: String
+  MapPublicIpOnLaunch:
+    Type: String
+    AllowedValues:
+      - "true"
+      - "false"
+
+Resources:
+  Subnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VpcId
+      CidrBlock: !Ref CidrBlock
+      MapPublicIpOnLaunch: !Ref MapPublicIpOnLaunch
+Outputs:
+  SubnetId:
+    Value: !Ref Subnet

@@ -1,0 +1,40 @@
+Validating in: modules/ec2/
+No protovolVersion found: this will default to version 1.0.0 during registration. Please consider upgrading to CFN-CLI 2.0 following the guide: https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html
+Module fragment is valid.
+
+
+Validating in: modules/internetgateway/
+No protovolVersion found: this will default to version 1.0.0 during registration. Please consider upgrading to CFN-CLI 2.0 following the guide: https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html
+Module fragment is valid.
+
+
+Validating in: modules/natgateway/
+No protovolVersion found: this will default to version 1.0.0 during registration. Please consider upgrading to CFN-CLI 2.0 following the guide: https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html
+Module fragment is valid.
+
+
+Validating in: modules/routetable/
+No protovolVersion found: this will default to version 1.0.0 during registration. Please consider upgrading to CFN-CLI 2.0 following the guide: https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html
+Module fragment is valid.
+
+
+Validating in: modules/secgroup-private/
+No protovolVersion found: this will default to version 1.0.0 during registration. Please consider upgrading to CFN-CLI 2.0 following the guide: https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html
+Module fragment is valid.
+
+
+Validating in: modules/secgroup-public/
+No protovolVersion found: this will default to version 1.0.0 during registration. Please consider upgrading to CFN-CLI 2.0 following the guide: https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html
+Module fragment is valid.
+
+
+Validating in: modules/subnet/
+No protovolVersion found: this will default to version 1.0.0 during registration. Please consider upgrading to CFN-CLI 2.0 following the guide: https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html
+Module fragment is valid.
+
+
+Validating in: modules/vpc/
+No protovolVersion found: this will default to version 1.0.0 during registration. Please consider upgrading to CFN-CLI 2.0 following the guide: https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html
+Module fragment is valid.
+
+

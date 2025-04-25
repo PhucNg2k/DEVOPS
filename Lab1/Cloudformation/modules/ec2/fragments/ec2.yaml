@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 module
+
+Parameters:
+  SubnetId:
+    Type: String
+  SecurityGroupId:
+    Type: String
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+
+Resources:
+  EC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0e449927258d45bc4  # free-tier eligible
+      InstanceType: t2.micro
+      SubnetId: !Ref SubnetId
+      SecurityGroupIds: [!Ref SecurityGroupId]
+      KeyName: !Ref KeyName
+Outputs:
+  InstanceId:
+    Value: !Ref EC2

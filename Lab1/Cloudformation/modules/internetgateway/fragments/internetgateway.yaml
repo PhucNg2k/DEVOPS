@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Internet Gateway module
+Parameters:
+  VpcId:
+    Type: String
+
+Resources:
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+  
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VpcId
+      InternetGatewayId: !Ref InternetGateway
+
+
+Outputs:
+  NatGatewayId:
+    Value: !Ref InternetGateway

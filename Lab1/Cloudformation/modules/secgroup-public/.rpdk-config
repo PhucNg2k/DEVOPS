@@ -1,0 +1,5 @@
+{
+    "artifact_type": "MODULE",
+    "typeName": "MyAWS::Subnet::PublicSubnet::MODULE",
+    "settings": {}
+}

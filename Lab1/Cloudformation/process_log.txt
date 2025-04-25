@@ -1,0 +1,10 @@
+Verifying AWS credentials...
+{
+    "UserId": "AROASRWH7YXHRL4FRQKUV:user3911683=22521134@gm.uit.edu.vn",
+    "Account": "175439332815",
+    "Arn": "arn:aws:sts::175439332815:assumed-role/voclabs/user3911683=22521134@gm.uit.edu.vn"
+}
+Assuming LabRole: arn:aws:iam::175439332815:role/LabRole...
+
+An error occurred (AccessDenied) when calling the AssumeRole operation: User: arn:aws:sts::175439332815:assumed-role/voclabs/user3911683=22521134@gm.uit.edu.vn is not authorized to perform: sts:AssumeRole on resource: arn:aws:iam::175439332815:role/LabRole
+❌ Failed to assume LabRole. Check permissions and trust policy.

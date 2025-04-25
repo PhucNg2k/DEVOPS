@@ -1,0 +1,93 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Main stack for Lab 1
+
+Mappings:
+  SubnetConfig:
+    VPC:
+      CIDR: 10.0.0.0/16
+    Public1:
+      CIDR: 10.0.0.0/24
+    Private1:
+      CIDR: 10.0.1.0/24
+
+Parameters:
+  AllowedIp:
+    Type: String
+    Description: IP for SSH access
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+  
+  
+Resources:
+
+  VPC:
+    Type: MyAWS::VPC::MyVPC::MODULE
+    Properties:
+      CidrBlock: !FindInMap [SubnetConfig, VPC, CIDR]
+  
+  PublicSubnet:
+    Type: MyAWS::Subnet::Subnet::MODULE
+    Properties:
+      VpcId: !GetAtt VPC.VpcId
+      CidrBlock: !FindInMap [SubnetConfig, Public1, CIDR]
+      MapPublicIpOnLaunch: "true"
+    
+  PrivateSubnet:
+    Type: MyAWS::Subnet::Subnet::MODULE
+    Properties:
+      VpcId: !GetAtt VPC.VpcId
+      CidrBlock: !FindInMap [SubnetConfig, Private1, CIDR]
+      MapPublicIpOnLaunch: "false"
+
+  InternetGateway:
+    Type: MyAWS::Gateway::MyIGW::MODULE
+    Properties:
+      VpcId: !GetAtt VPC.VpcId
+    
+  NatGateway:
+    Type: MyAWS::Gateway::MyNGW::MODULE
+    Properties:
+      VpcId: !GetAtt VPC.VpcId
+      SubnetId: !GetAtt PublicSubnet.PublicSubnetId
+
+  PublicRouteTable:
+    Type: MyAWS::RouteTable::RouteTable::MODULE
+    Properties:
+      VpcId: !GetAtt VPC.VpcId
+      SubnetId: !GetAtt PublicSubnet.SubnetId
+      GatewayId: !GetAtt InternetGateway.InternetGatewayId
+
+  PrivateRouteTable:
+    Type: MyAWS::RouteTable::RouteTable::MODULE
+    Properties:
+      VpcId: !GetAtt VPC.VpcId
+      SubnetId: !GetAtt PrivateSubnet.SubnetId
+      GatewayId: !GetAtt NatGateway.NatGatewayId
+
+  PublicSecurityGroup:
+    Type: MyAWS::SecurityGroup:PublicSecurityGroup::MODULE
+    Properties: 
+      VpcId: !GetAtt VPC.VpcId
+      AllowedIp: !Ref AllowedIp
+ 
+  PrivateSecurityGroup:
+    Type: MyAWS::SecurityGroup:PrivateSecurityGroup::MODULE
+    Properties: 
+      VpcId: !GetAtt VPC.VpcId
+      PublicSecurityGroupId: !GetAtt PublicSecurityGroup.SecurityGroupId
+    
+  PublicEC2:
+    Type: MyAWS::EC2::EC2::MODULE
+    Properties:
+      SubnetId: !GetAtt PublicSubnet.SubnetId
+      SecurityGroupId: !GetAtt PublicSecurityGroup.SecurityGroupId
+      KeyName: !Ref KeyName
+  
+  PrivateEC2:
+    Type: MyAWS::EC2::EC2::MODULE
+    Properties:
+      SubnetId: !GetAtt PrivateSubnet.SubnetId
+      SecurityGroupId: !GetAtt PrivateSecurityGroup.SecurityGroupId
+      KeyName: !Ref KeyName
+
+

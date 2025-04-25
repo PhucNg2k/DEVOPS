@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Private Security Group module
+Parameters:
+  VpcId:
+    Type: String
+  PublicSecurityGroupId:
+    Type: String
+    
+Resources:
+  PrivateSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Private EC2 Security Group
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          SourceSecurityGroupId: !Ref PublicSecurityGroupId
+
+Outputs:
+  SecurityGroupId:
+    Value: !Ref PrivateSecurityGroup
